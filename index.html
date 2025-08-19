@@ -670,6 +670,16 @@ nav .container {
     background-color: var(--primary);
     color: white;
     text-align: center;
+    height: 600px;
+    width: 0;
+    transition: all 1s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+    overflow: hidden
 }
 
 .testimonials h2 {
@@ -681,6 +691,10 @@ nav .container {
     max-width: 800px;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .testimonial {
@@ -1267,9 +1281,26 @@ nav .container {
 }
 
 @keyframes typing {from {width: 0} to {width: 100%}}
+.text {
+}
 
 .text-sambutan {
     transform: translateX(-700px);
+    transition: 1s all
+}
+
+.contact-header {
+    opacity: 0;
+    transition: 1s ease
+}
+
+.map-container {
+    transform: translateX(-100px);
+    transition: all 1s
+}
+
+.contact-info-box {
+    transform: translateX(100px);
     transition: 1s all
 }
     </style>
@@ -1552,12 +1583,27 @@ nav .container {
   <h2>Testimoni Alumni</h2>
   <div class="testimonial-slider">
     <div class="testimonial absolute active">
-      <p class="quote">"Selama bersekolah di Sman 17 Surabaya atau smantass, saya sama sekali tidak menyia-nyiakan 3 tahun masa sekolah menengah atas. saya bisa dangan bebas mengeksplor diri dan berkembang dengan lingkungan, sarana prasarana serta dukungan yang selalu memenuhi kebutuhan saya, guna mencapai mimpi. Tetap jaya Smantass ku! Smantass dilawan sakti!"</p>
-      <div class="author"><img src="https://sman17sby.sch.id/wp-content/uploads/2016/11/WhatsApp-Image-2024-03-19-at-14.10.07-165x165.jpeg"><h4>Iqbal Adam Umri</h4></div>
+      <p class="quote">
+        <p class="text">Selama bersekolah di Sman 17 Surabaya atau smantass, saya sama sekali tidak</p>
+        <p class="text">menyia-nyiakan 3 tahun masa sekolah menengah atas. saya bisa dangan bebas</p>
+        <p class="text">mengeksplor diri dan berkembang dengan lingkungan, sarana prasarana serta</p>
+        <p class="text">dukungan yang selalu memenuhi kebutuhan saya, guna mencapai mimpi. Tetap</p>
+        <p class="text">jaya Smantass ku! Smantass dilawan sakti!"</p> <br>
+        <div class="author">
+            <img src="https://sman17sby.sch.id/wp-content/uploads/2016/11/WhatsApp-Image-2024-03-19-at-14.10.07-165x165.jpeg">
+            <h4>Iqbal Adam Umri</h4>
+        </div>
     </div>
     <div class="testimonial">
-      <p class="quote">"Saya alumni 17 bangga dan bersyukur bisa menimba ilmu di smantass. Sekolah yang memberikan kesempatan mengembangkan potensi sehingga menjadi siswa yang bernilai bagi semua orang. Terima kasih Bapak dan Ibu guru dan semua karyawan yang telah memberikan ilmu dan membentuk karakter sayaserta sehingga kita teladani kedepannya."</p>
-      <div class="author"><img src="https://sman17sby.sch.id/wp-content/uploads/2016/11/WhatsApp-Image-2024-03-18-at-09.03.12-165x165.jpeg"><h4>Rizky Ilham Arifin</h4></div>
+      <p class="quote">
+        <p class="text">Saya alumni 17 bangga dan bersyukur bisa menimba ilmu di smantass. Sekolah</p>
+        <p  class="text">yang memberikan kesempatan mengembangkan potensi sehingga menjadi siswa</p>
+        <p class="text">yang bernilai bagi semua orang. Terima kasih Bapak dan Ibu guru dan semua</p>
+        <p class="text">karyawan yang telah memberikan ilmu dan membentuk karakter saya</p>
+        <p class="text">sehingga kita bisa teladani kedepannya.</p>
+      </p> <br>
+      <div class="author"><img src="https://sman17sby.sch.id/wp-content/uploads/2016/11/WhatsApp-Image-2024-03-18-at-09.03.12-165x165.jpeg"></div>
+      <h4>Rizky Ilham Arifin</h4>
     </div>
   </div>
   <div class="testimonial-nav">
@@ -1565,10 +1611,11 @@ nav .container {
     <button onclick="changeTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
   </div>
 </section>
-    <section class="contact-section">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px; color: var(--primary);">Hubungi Kami</h2>
-  <div class="container contact-container">
+
+<section class="contact-section">
+  <div class="container">
+    <h2 class="contact-header" style="text-align: center; margin-bottom: 50px; color: var(--primary);">Hubungi Kami</h2>
+    <div class="container contact-container">
     <div class="map-container">
       <iframe src="https://maps.google.com/maps?q=SMAN%2017%20Surabaya&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
     </div>
@@ -1682,21 +1729,6 @@ setInterval(() => {
     showSlide(currentSlide + 1);
 }, 5000);
 
-// Testimonial Slider
-let currentTestimonial = 0;
-const testimonials = document.querySelectorAll('.testimonial');
-
-function showTestimonial(n) {
-    testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-    
-    currentTestimonial = (n + testimonials.length) % testimonials.length;
-    testimonials[currentTestimonial].classList.add('active');
-}
-
-// Auto testimonial change
-setInterval(() => {
-    showTestimonial(currentTestimonial + 1);
-}, 7000);
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1830,7 +1862,9 @@ opacityObserver.observe(document.querySelector(".visi-misi-header"))
 opacityObserver.observe(document.querySelector(".visi"))
 opacityObserver.observe(document.querySelector(".misi"))
 opacityObserver.observe(document.querySelector(".guru-slider"))
+opacityObserver.observe(document.querySelector(".section-header"))
 opacityObserver.observe(document.querySelector(".section-header0"))
+opacityObserver.observe(document.querySelector(".contact-header"))
 
 window.addEventListener("scroll", () => {
     if (window.scrollY === 0) {
@@ -1910,6 +1944,29 @@ const appCardsObserver = new IntersectionObserver(entries => {
 })
 appCardsObserver.observe(appCards[0])
 
+const testiObserver = new IntersectionObserver( entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.width = "100%"
+        } else { entry.target.style.width = "0" }
+    })
+})
+
+testiObserver.observe(document.querySelector(".testimonials"))
+
+let map = document.querySelector(".map-container")
+let contactInfo = document.querySelector(".contact-info-box")
+const contactObserver = new IntersectionObserver(entries => entries.forEach( entry => {
+    if (entry.isIntersecting) {
+        map.style.transform = "translateX(0)"
+        contactInfo.style.transform = "translateX(0)"
+    } else {
+        map.style.transform = "translateX(-100px)"
+        contactInfo.style.transform = "translateX(100px)"
+    }
+}))
+
+contactObserver.observe(map)
     </script>
 </body>
 </html>
