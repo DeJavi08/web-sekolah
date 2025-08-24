@@ -1,0 +1,30 @@
+<!-- file testing -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{
+            outline-width: 20px 0 0 0;
+            outline: solid black
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div></div>
+    </header>
+
+    <script>
+        div = document.getElementsByTagName("div")[0]
+        div.innerHTML = window.innerWidth
+        func = () => {div.style.opacity = "1"}
+        setTimeout(func, 1)
+        
+    </script>
+</body>
+</html>
